@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsBoolean, IsNumber, IsNotEmpty } from 'class-validator';
+import { CarEcologicalLabel, CarStatus, CarTransmission } from './enum';
 
 export class CreateCarDto {
 
@@ -30,8 +31,8 @@ export class CreateCarDto {
 
     @IsString()
     @IsNotEmpty()
-    @ApiProperty({ example: 'B', description: 'Etiqueta medioambiental del coche' })
-    ecologicalLabel: string;
+    @ApiProperty({ example: 'B', description: 'Etiqueta medioambiental del coche', enum: CarEcologicalLabel })
+    ecologicalLabel: CarEcologicalLabel;
 
     @IsString()
     @IsNotEmpty()
@@ -41,8 +42,8 @@ export class CreateCarDto {
 
     @IsString()
     @IsNotEmpty()
-    @ApiProperty({ example: 'Automático', description: 'Tipo de caja de cambios' })
-    transmission: string;
+    @ApiProperty({ example: 'Automático', description: 'Tipo de caja de cambios', enum: CarTransmission })
+    transmission: CarTransmission;
 
     @IsString()
     @IsNotEmpty()
@@ -56,6 +57,6 @@ export class CreateCarDto {
 
     @IsString()
     @IsNotEmpty()
-    @ApiProperty({ example: 'in_use', description: 'Estado actual en el que se encuentra el vehículo' })
-    status: string;
+    @ApiProperty({ example: 'in_use', description: 'Estado actual en el que se encuentra el vehículo', enum: CarStatus })
+    status: CarStatus;
 }

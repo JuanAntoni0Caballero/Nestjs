@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, IsNull } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Car } from '../../cars/entities/car.entity';
 import { ReservationRequest } from '../../reservation_requests/entities/reservation_request.entity';
 import { ReservationStatus, ReservationDuration } from '../dto/enum';

@@ -7,7 +7,6 @@ import { ReservationRequestsModule } from './reservation_requests/reservation_re
 import { ManagedRequestsModule } from './managed_requests/managed_requests.module';
 
 
-
 @Module({
   imports: [
     ConfigModule.forRoot(),

@@ -1,13 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsNumber, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
-import { ReservationRequestDuration, ReservationRequestStatus } from './enum'
+import { Duration, ReservationRequestStatus } from '@prisma/client';
 
-export class UpdateReservationRequestDto {
+export class CreateReservationRequestDto {
+
     @IsString()
     @IsNotEmpty()
     @ApiProperty({ example: 'Mañana', description: 'Periodo de uso' })
-    duration: ReservationRequestDuration;
+    duration: Duration;
 
     @IsNotEmpty()
     @IsBoolean()

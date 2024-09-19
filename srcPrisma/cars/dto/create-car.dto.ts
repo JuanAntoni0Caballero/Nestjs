@@ -1,63 +1,62 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { CarEcologicalLabel, CarStatus, CarTransmission } from '../dto/enum';
+import { IsString, IsBoolean, IsNumber, IsNotEmpty } from 'class-validator';
+import { CarEcologicalLabel, CarStatus, CarTransmission } from '@prisma/client'
 
-@Entity('car')
-export class Car {
-    @PrimaryGeneratedColumn()
-    id: number;
+export class CreateCarDto {
 
-    @Column()
+    @IsString()
+    @IsNotEmpty()
     @ApiProperty({ example: 'Toyota', description: 'Marca del coche' })
     brand: string;
 
-    @Column()
+    @IsString()
+    @IsNotEmpty()
     @ApiProperty({ example: 'Corolla', description: 'Modelo del coche' })
     model: string;
 
-    @Column()
+    @IsString()
+    @IsNotEmpty()
     @ApiProperty({ example: '1234ABC', description: 'Número de placa del coche' })
     plateNumber: string;
 
-    @Column()
+    @IsNumber()
+    @IsNotEmpty()
     @ApiProperty({ example: 2023, description: 'Año de matriculación del coche' })
     registrationYear: number;
 
-    @Column()
+    @IsBoolean()
+    @IsNotEmpty()
     @ApiProperty({ example: 'true', description: '¿Tiene permiso de acceso a Mercamadrid?' })
     mercamadridPermission: boolean;
 
-    @Column({
-        type: 'enum',
-        enum: CarEcologicalLabel,
-    })
-    @ApiProperty({ example: 'B', description: 'Etiqueta medioambiental del coche' })
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty({ example: 'B', description: 'Etiqueta medioambiental del coche', enum: CarEcologicalLabel })
     ecologicalLabel: CarEcologicalLabel;
 
-    @Column()
+    @IsString()
+    @IsNotEmpty()
     @ApiProperty({ example: 'Turismo', description: 'Tipo de vehículo' })
     type: string;
 
-    @Column({
-        type: 'enum',
-        enum: CarTransmission,
-    })
-    @ApiProperty({ example: 'Automatic', description: 'Tipo de caja de cambios' })
+
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty({ example: 'Automático', description: 'Tipo de caja de cambios', enum: CarTransmission })
     transmission: CarTransmission;
 
-    @Column()
+    @IsString()
+    @IsNotEmpty()
     @ApiProperty({ example: 'Lease Plan', description: 'Renting propietario' })
     renting: string;
 
-    @Column()
+    @IsString()
+    @IsNotEmpty()
     @ApiProperty({ example: '+3499999999', description: 'Telefono de asistencia del renting' })
     assistanceTelephone: string;
 
-    @Column({
-        type: 'enum',
-        enum: CarStatus,
-        default: CarStatus.Available
-    })
-    @ApiProperty({ example: 'In use', description: 'Estado actual en el que se encuentra el vehículo' })
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty({ example: 'in_use', description: 'Estado actual en el que se encuentra el vehículo', enum: CarStatus })
     status: CarStatus;
 }
