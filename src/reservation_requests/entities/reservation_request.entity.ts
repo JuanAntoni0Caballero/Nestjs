@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { ReservationRequestDuration, ReservationRequestStatus } from '../dto/enum';
 
 
 @Entity('reservation_request')
@@ -8,9 +9,12 @@ export class ReservationRequest {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    @ApiProperty({ example: 'Mañana', description: 'Periodo de uso' })
-    duration: string;
+    @Column({
+        type: 'enum',
+        enum: ReservationRequestDuration,
+    })
+    @ApiProperty({ example: 'Mañana', description: 'Periodo de uso', enum: ReservationRequestDuration })
+    duration: ReservationRequestDuration;
 
     @Column()
     @ApiProperty({ example: 'true', description: '¿Pasa la noche fuera?' })
@@ -32,9 +36,12 @@ export class ReservationRequest {
     @ApiProperty({ example: '2023-05-15', description: 'Fecha de reserva' })
     reservation_date: Date
 
-    @Column()
-    @ApiProperty({ example: 'Pendiente', description: 'Estado de la reserva' })
-    status: string;
+    @Column({
+        type: 'enum',
+        enum: ReservationRequestStatus,
+    })
+    @ApiProperty({ example: 'Pending', description: 'Estado de la reserva', enum: ReservationRequestStatus })
+    status: ReservationRequestStatus;
 
     @Column()
     @ApiProperty({ example: 'Juan Pérez', description: 'Nombre del solicitante' })

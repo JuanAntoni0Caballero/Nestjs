@@ -1,12 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsNumber, IsNotEmpty, IsString, IsBoolean } from 'class-validator';
+import { ReservationRequestDuration, ReservationRequestStatus } from './enum';
 
 export class CreateReservationRequestDto {
     @IsString()
     @IsNotEmpty()
     @ApiProperty({ example: 'Mañana', description: 'Periodo de uso' })
-    duration: string;
+    duration: ReservationRequestDuration;
 
     @IsNotEmpty()
     @IsBoolean()
@@ -36,7 +37,7 @@ export class CreateReservationRequestDto {
     @IsString()
     @IsNotEmpty()
     @ApiProperty({ example: 'Pendiente', description: 'Estado de la reserva' })
-    status: string;
+    status: ReservationRequestStatus;
 
     @IsString()
     @IsNotEmpty()

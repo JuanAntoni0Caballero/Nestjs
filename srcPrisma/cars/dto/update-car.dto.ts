@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsBoolean, IsNumber, IsNotEmpty } from 'class-validator';
-import { CarEcologicalLabel, CarStatus, CarTransmission } from './enum';
-
+import { CarEcologicalLabel, CarStatus, CarTransmission } from '@prisma/client';
 
 export class UpdateCarDto {
 

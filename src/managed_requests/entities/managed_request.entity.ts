@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { ReservationRequest } from '../../reservation_requests/entities/reservation_request.entity';
-import { Car } from 'src/cars/entities/car.entity';
+import { Car } from '../../cars/entities/car.entity';
 
 @Entity('managed_requests')
 export class ManagedRequest {

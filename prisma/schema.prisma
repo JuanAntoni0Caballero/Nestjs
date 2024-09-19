@@ -1,0 +1,92 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:MySqlPassword@localhost:3306/prisma_car_reservation"
+}
+
+enum ReservationRequestStatus {
+  Pending
+  InProgress
+  Finished
+}
+
+enum ReservationStatus {
+ Pending
+ InProgress
+ Finished
+}
+
+enum Duration{
+  Morning
+  Afternoon
+}
+
+enum CarEcologicalLabel {
+    B
+    C
+    ECO
+    O
+}
+
+enum CarTransmission {
+  Automatic
+  Manual
+}
+
+enum CarStatus {
+Available
+InUse
+Maintenance
+}
+
+model Car {
+  id    Int     @id @default(autoincrement())
+  brand String  
+  model  String
+  plateNumber String
+  registrationYear Int
+  mercamadridPermission Boolean
+  ecologicalLabel CarEcologicalLabel
+  type  String
+  transmission CarTransmission
+  renting String
+  assistanceTelephone String
+  status CarStatus
+  reservations  Car_reservation[]
+}
+
+
+model ReservationRequest {
+  id    Int     @id @default(autoincrement())
+  duration Duration
+  overnight Boolean
+  reason String
+  expectedDistance Int
+  requests_date DateTime
+  reservation_date DateTime
+  status ReservationRequestStatus
+  applicantName String
+  applicantEmail String
+  observations String
+  reservations  Car_reservation[]
+}
+
+
+model Car_reservation {
+  id    Int     @id @default(autoincrement())
+  car Car @relation(fields: [car_id], references: [id])
+  car_id Int
+  reservation_request ReservationRequest @relation(fields: [reservation_request_id], references: [id])
+  reservation_request_id Int
+  duration Duration
+  date DateTime
+  pickUpDate DateTime
+  returnDate DateTime
+  status ReservationStatus
+}

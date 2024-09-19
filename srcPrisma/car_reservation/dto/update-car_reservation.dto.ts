@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsNumber, IsNotEmpty, IsDate, IsEnum, IsOptional } from 'class-validator';
-import { ReservationStatus, ReservationDuration } from './enum';
+import { Duration, ReservationStatus } from '@prisma/client';
 
 export class UpdateCarReservationDto {
     @IsNumber()
@@ -20,10 +20,10 @@ export class UpdateCarReservationDto {
     @ApiProperty({ example: '2023-05-15', description: 'Fecha de la reserva' })
     date?: Date;
 
-    @IsEnum(ReservationDuration)
+    @IsEnum(Duration)
     @IsNotEmpty()
-    @ApiProperty({ example: 'Morning', description: 'Periodo de la reserva', enum: ReservationDuration })
-    duration?: ReservationDuration
+    @ApiProperty({ example: 'Morning', description: 'Periodo de la reserva', enum: Duration })
+    duration?: Duration
 
     @IsOptional()
     @IsDate()
