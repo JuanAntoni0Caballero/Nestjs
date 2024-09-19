@@ -38,8 +38,11 @@ $ npm install
 # development
 $ npm run start
 
-# watch mode
+# watch mode TypeOrm 
 $ npm run start:dev
+
+# watch mode Prisma 
+$ npm run prisma
 
 # production mode
 $ npm run start:prod
