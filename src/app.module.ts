@@ -18,7 +18,7 @@ import { ManagedRequestsModule } from './managed_requests/managed_requests.modul
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: process.env.DB_SYNC === 'true',
+      synchronize: process.env.DB_SYNC === 'false',
       timezone: process.env.DB_TIMEZONE,
     }),
     CarModule,
