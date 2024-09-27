@@ -7,7 +7,7 @@ export interface Car {
     mercamadridPermission: boolean;
     ecologicalLabel: string;
     type: string;
-    shift: string;
+    transmission: string;
     renting: string;
     assistanceTelephone: string;
     status: string;
